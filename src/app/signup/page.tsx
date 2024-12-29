@@ -45,6 +45,7 @@ export default function SignUpForm() {
 
       const result = await response.json();
       console.log("User created:", result);
+      window.location.href = "/login";
     } catch (error) {
       console.error("Error submitting form:", error);
       setError("An error occurred while submitting the form.");
