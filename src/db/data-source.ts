@@ -19,6 +19,9 @@ if (process.env.NEXT_PUBLIC_NODE_ENV === "production") {
     synchronize: false,
     logging: false,
     entities: [User, Incentives, Idea, Submission],
+    ssl: {
+      rejectUnauthorized: false // Required for most cloud providers, including NeonDB
+    }
   });
 } else {
   appDataSource = new DataSource({
@@ -33,7 +36,9 @@ if (process.env.NEXT_PUBLIC_NODE_ENV === "production") {
     entities: [User, Incentives, Idea, Submission],
     migrations: [join(__dirname, "../migrations/", "*.{ts,js}")],
     migrationsRun: true,
-    ssl: process.env.APP_ENV === "production" ? true : false,
+    ssl: {
+      rejectUnauthorized: false // Required for most cloud providers, including NeonDB
+    }
   });
 }
 
